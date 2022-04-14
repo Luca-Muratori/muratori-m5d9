@@ -23,15 +23,16 @@ const mediaSchema = {
     },
   },
 };
+
 const reviewSchema = {
   text: {
     isString: {
       errorMessage: "Text field is required for comment",
     },
   },
-  userName: {
-    isString: {
-      errorMessage: "User name is required for comment",
+  rate: {
+    isNumeric: {
+      errorMessage: "A valid rate (1-5) is required for comment",
     },
   },
 };

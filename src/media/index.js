@@ -4,7 +4,11 @@ import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import uniqid from "uniqid";
 import { getMedia, writeMedia, saveMediaCover } from "./fs-tools.js";
-import { checkMediaSchema, checkReviewSchema } from "./validation.js";
+import {
+  checkMediaSchema,
+  checkReviewSchema,
+  checkValidationResult,
+} from "./validation.js";
 import createError from "http-errors";
 import multer from "multer";
 import { v2 as cloudinary } from "cloudinary";
@@ -126,4 +130,44 @@ mediaRouter.put("/:id/poster", cloudinaryUploader, async (req, res, next) => {
     next(error);
   }
 });
+
+mediaRouter.put(
+  "/:id/review",
+  checkReviewSchema,
+  checkValidationResult,
+  async (req, res, next) => {
+    try {
+      const { text, rate } = req.body;
+      const review = {
+        id: uniqid(),
+        text,
+        rate,
+        elementId: req.params.id,
+        createdAt: new Date(),
+      };
+      const fileAsBuffer = fs.readFileSync(mediaJSONPath);
+      const fileAsString = fileAsBuffer.toString();
+      const fileAsJSONArray = JSON.parse(fileAsString);
+
+      const reviewIndex = fileAsJSONArray.findIndex(
+        (media) => media.id === req.params.id
+      );
+      if (!reviewIndex == -1) {
+        res.status(404).send({ message: "movie not found" });
+      } else {
+        const previousReviewData = fileAsJSONArray[reviewIndex];
+        previousReviewData.reviews = previousReviewData.reviews || [];
+        const changedMovieReview = {
+          ...previousReviewData,
+          reviews: [...previousReviewData.reviews, review],
+        };
+        fileAsJSONArray[reviewIndex] = changedMovieReview;
+        fs.writeFileSync(mediaJSONPath, JSON.stringify(fileAsJSONArray));
+        res.send(changedMovieReview);
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 export default mediaRouter;
