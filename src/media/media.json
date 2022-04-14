@@ -3,16 +3,18 @@
     "Title": "Little Miss Sunshine",
     "Year": "2001",
     "Type": "movie",
-    "Poster": "https://m.media-amazon.com/images/M/MV5BMTM5MzcwOTg4MF5BMl5BanBnXkFtZTgwOTQwMzQxMDE@._V1_SX300.jpg",
+    "Poster": "https://res.cloudinary.com/dar1jmjxk/image/upload/v1649941380/m5-d9/ozf2phwareronc8pt49o.jpg",
     "createdAt": "2022-04-14T11:47:32.623Z",
-    "id": "zshaeol1yxsvbk"
+    "id": "zshaeol1yxsvbk",
+    "updatedAt": "2022-04-14T13:03:01.507Z"
   },
   {
     "Title": "The Lord of the Rings: The Fellowship of the Ring",
     "Year": "2001",
     "Type": "movie",
-    "Poster": "https://m.media-amazon.com/images/M/MV5BMTM5MzcwOTg4MF5BMl5BanBnXkFtZTgwOTQwMzQxMDE@._V1_SX300.jpg",
+    "Poster": "https://res.cloudinary.com/dar1jmjxk/image/upload/v1649941301/m5-d9/dwd82glbu3phx0z6ujae.jpg",
     "createdAt": "2022-04-14T11:47:46.655Z",
-    "id": "zshaeol1yxt65b"
+    "id": "zshaeol1yxt65b",
+    "updatedAt": "2022-04-14T13:01:41.814Z"
   }
 ]

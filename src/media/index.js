@@ -109,18 +109,16 @@ mediaRouter.put("/:id/poster", cloudinaryUploader, async (req, res, next) => {
     const media = await getMedia();
 
     const index = media.findIndex((media) => media.id === req.params.id);
-
+    console.log(req.file);
     if (index !== -1) {
       const oldMedia = media[index];
 
       const updatedMedia = {
         ...oldMedia,
-        poster: req.body,
+        Poster: req.file.path,
         updatedAt: new Date(),
       };
-
       media[index] = updatedMedia;
-
       await writeMedia(media);
       res.send(updatedMedia);
     }
