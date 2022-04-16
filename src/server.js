@@ -30,17 +30,15 @@ const whitelist = [process.env.FE_DEV_URL, process.env.FE_PROD_URL];
 server.use(express.static(publicFolderPath));
 server.use(
   cors({
-    origin: process.env.FE_PROD_URL,
+    origin: (origin, next) => {
+      console.log("ORIGIN: ", origin);
 
-    // (origin, next) => {
-    //   console.log("ORIGIN: ", origin);
-
-    //   if (!origin || whitelist.indexOf(origin) !== -1) {
-    //     next(null, true);
-    //   } else {
-    //     next(createError(400, "CORS ERROR!"));
-    //   }
-    // },
+      if (!origin || whitelist.indexOf(origin) !== -1) {
+        next(null, true);
+      } else {
+        next(createError(400, "CORS ERROR!"));
+      }
+    },
   })
 );
 server.use(loggerMiddleware);
