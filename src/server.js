@@ -31,6 +31,7 @@ server.use(express.static(publicFolderPath));
 server.use(
   cors({
     origin: process.env.FE_PROD_URL,
+
     // (origin, next) => {
     //   console.log("ORIGIN: ", origin);
 
