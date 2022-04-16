@@ -36,7 +36,7 @@ server.use(
       if (!origin || whitelist.indexOf(origin) !== -1) {
         next(null, true);
       } else {
-        next(createError(400, "CORS ERROR!"));
+        next(createError(400, "CORS R!"));
       }
     },
   })
