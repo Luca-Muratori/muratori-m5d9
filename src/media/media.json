@@ -7,22 +7,7 @@
     "createdAt": "2022-04-14T11:47:32.623Z",
     "id": "zshaeol1yxsvbk",
     "updatedAt": "2022-04-14T13:03:01.507Z",
-    "reviews": [
-      {
-        "id": "zsh1lkl1z2xiwb",
-        "text": "I like dogs ",
-        "rate": 3,
-        "elementId": "zshaeol1yxsvbk",
-        "createdAt": "2022-04-14T14:11:07.882Z"
-      },
-      {
-        "id": "zshc2kl1z334gh",
-        "text": "I like harry ",
-        "rate": 3,
-        "elementId": "zshaeol1yxsvbk",
-        "createdAt": "2022-04-14T14:15:29.105Z"
-      }
-    ]
+    "reviews": []
   },
   {
     "Title": "The Lord of the Rings: The Fellowship of the Ring",

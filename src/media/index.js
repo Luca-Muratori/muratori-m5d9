@@ -174,17 +174,19 @@ mediaRouter.put(
 mediaRouter.delete("/:id/review/:reviewId", async (req, res, next) => {
   try {
     const media = await getMedia();
-    const findMovie = media.find((movie) => movie.id === req.params.id);
-    let reviews = findMovie.reviews;
-    const removeReview = reviews.filter(
-      (review) => review.id !== req.params.reviewId
-    );
-    console.log(removeReview);
+    const mediaIndex = media.findIndex((movie) => movie.id === req.params.id);
+    if (mediaIndex !== -1) {
+      const findMovie = media[mediaIndex];
+      let reviews = findMovie.reviews;
+      const removeReview = reviews.filter(
+        (review) => review.id !== req.params.reviewId
+      );
+      console.log(removeReview);
 
-    reviews = removeReview;
-    await writeMedia(deletedReview);
-    res.status(201).send({ message: "review deleted" });
-    res.send();
+      media[mediaIndex].reviews = removeReview;
+      await writeMedia(media);
+      res.status(201).send({ message: "review deleted" });
+    }
   } catch (error) {
     res.status(500).send({ message: "review not found" });
   }
