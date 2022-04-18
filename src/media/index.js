@@ -13,6 +13,8 @@ import createError from "http-errors";
 import multer from "multer";
 import { v2 as cloudinary } from "cloudinary";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
+import { pipeline } from "stream";
+import { createGzip } from "zlib";
 
 const mediaRouter = express.Router();
 
@@ -65,7 +67,7 @@ mediaRouter.get("/:id", async (req, res, next) => {
     if (findMovie) {
       res.send(findMovie);
     } else {
-      next.createError(404, "Movie not found!");
+      console.log(404, "Movie not found!");
     }
   } catch (error) {
     next(error);
@@ -191,4 +193,5 @@ mediaRouter.delete("/:id/review/:reviewId", async (req, res, next) => {
     res.status(500).send({ message: "review not found" });
   }
 });
+
 export default mediaRouter;

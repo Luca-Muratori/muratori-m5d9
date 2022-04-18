@@ -11,6 +11,7 @@ import {
 import createError from "http-errors";
 
 import mediaRouter from "./media/index.js";
+import filesRouter from "./tools/utility.js";
 
 const server = express();
 
@@ -45,6 +46,7 @@ server.use(loggerMiddleware);
 server.use(express.json());
 
 server.use("/media", mediaRouter);
+server.use("/files", filesRouter);
 
 server.use(badRequestErrorHandler);
 server.use(unauthorizedErrorHandler);
