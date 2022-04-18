@@ -10,6 +10,11 @@ const mediaJSONPath = join(
   "media.json"
 );
 
+const mediaFolderPath = join(
+  dirname(fileURLToPath(import.meta.url)),
+  "../media"
+);
+
 const usersPublicFolderPath = join(process.cwd(), "./public/img/media");
 
 export const getMedia = () => readJSON(mediaJSONPath);
@@ -21,4 +26,4 @@ export const saveMediaCover = (filename, contentAsBuffer) =>
 export const getMediaReadableStream = () => createReadStream(mediaJSONPath);
 
 export const getPDFWritableStream = (filename) =>
-  createWriteStream(join(dataFolderPath, filename));
+  createWriteStream(join(mediaFolderPath, filename));

@@ -15,6 +15,7 @@ import { v2 as cloudinary } from "cloudinary";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 import { pipeline } from "stream";
 import { createGzip } from "zlib";
+import { sendRegistrationEmail } from "../tools/emailTools.js";
 
 const mediaRouter = express.Router();
 
@@ -191,6 +192,16 @@ mediaRouter.delete("/:id/review/:reviewId", async (req, res, next) => {
     }
   } catch (error) {
     res.status(500).send({ message: "review not found" });
+  }
+});
+
+mediaRouter.post("/register", async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    await sendRegistrationEmail(email);
+    res.send({ message: "email send" });
+  } catch (error) {
+    next(error);
   }
 });
 
